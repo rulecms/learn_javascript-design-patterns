@@ -13,7 +13,7 @@
     "deploy:worker": "wrangler deploy",
     "deploy": "npm run build:worker && npm run deploy:worker",
     "pages:build": "npx @cloudflare/next-on-pages@1",
-    "pages:deploy": "wrangler pages deploy .vercel/output/static",
+    "pages:deploy": "wrangler pages deploy .vercel/output/static --project-name=javascript-design-patterns",
     "pages:dev": "wrangler pages dev .vercel/output/static --compatibility-date=2024-05-27 --compatibility-flag=nodejs_compat"
   },
   "dependencies": {
