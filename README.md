@@ -86,6 +86,46 @@ pnpm build
 pnpm start
 ```
 
+## ☁️ Deploy to Cloudflare
+
+### Option 1: Cloudflare Pages (Recommended)
+
+Cloudflare Pages is the recommended approach for Next.js applications:
+
+1. Fork this repository
+2. Connect your GitHub account to Cloudflare Pages
+3. Import this project with these settings:
+   - Framework preset: `Next.js`
+   - Build command: `npx @cloudflare/next-on-pages@1`
+   - Build output directory: `.vercel/output/static`
+
+**Manual Deploy:**
+```bash
+npm run pages:build
+npm run pages:deploy
+```
+
+### Option 2: Cloudflare Workers
+
+For advanced use cases requiring Workers features (KV, Durable Objects):
+
+```bash
+# Install dependencies
+npm install
+
+# Build for Workers
+npm run build:worker
+
+# Deploy to Workers
+npm run deploy:worker
+```
+
+**Note:** Workers deployment requires additional setup and has limitations with Next.js features. See [CLOUDFLARE_WORKERS_DEPLOYMENT.md](./CLOUDFLARE_WORKERS_DEPLOYMENT.md) for details.
+
+For most use cases, **Cloudflare Pages is strongly recommended** over Workers for Next.js applications.
+
+See [CLOUDFLARE_DEPLOYMENT.md](./CLOUDFLARE_DEPLOYMENT.md) for detailed deployment instructions.
+
 ## 📁 Project Structure
 
 ```

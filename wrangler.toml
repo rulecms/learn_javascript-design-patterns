@@ -1,0 +1,52 @@
+name = "javascript-design-patterns"
+main = ".worker-next/index.js"
+compatibility_date = "2024-05-27"
+
+# Worker configuration
+[site]
+bucket = ".worker-next/assets"
+
+# Build configuration
+[build]
+command = "npm run build:worker"
+
+# Environment variables
+[vars]
+NODE_ENV = "production"
+
+# Compatibility flags for Next.js
+[compatibility_flags]
+nodejs_compat = true
+
+# KV namespace bindings (if needed for caching)
+# [[kv_namespaces]]
+# binding = "CACHE"
+# id = "your-kv-namespace-id"
+
+# Durable Objects bindings (if needed)
+# [[durable_objects.bindings]]
+# name = "DO"
+# class_name = "DurableObject"
+# script_name = "javascript-design-patterns"
+
+# Routes
+[env.production.routes]
+pattern = "javascript-design-patterns.workers.dev/*"
+zone_name = ""
+
+[env.staging.routes]
+pattern = "staging-javascript-design-patterns.workers.dev/*"
+zone_name = ""
+
+# Headers
+[[headers]]
+for = "/*"
+values = { X-Frame-Options = "DENY", X-Content-Type-Options = "nosniff", Referrer-Policy = "strict-origin-when-cross-origin" }
+
+[[headers]]
+for = "/_next/static/*"
+values = { Cache-Control = "public, max-age=31536000, immutable" }
+
+[[headers]]
+for = "/favicon.ico"
+values = { Cache-Control = "public, max-age=86400" } 

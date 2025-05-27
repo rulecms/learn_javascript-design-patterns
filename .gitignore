@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# cloudflare
+.wrangler/
+.vercel/
+.mf/
+functions/
+_worker.js
+.worker-next/
+worker-dist/
