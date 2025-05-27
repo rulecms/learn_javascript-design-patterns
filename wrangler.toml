@@ -15,8 +15,7 @@ command = "npm run build:worker"
 NODE_ENV = "production"
 
 # Compatibility flags for Next.js
-[compatibility_flags]
-nodejs_compat = true
+compatibility_flags = ["nodejs_compat"]
 
 # KV namespace bindings (if needed for caching)
 # [[kv_namespaces]]
@@ -36,17 +35,4 @@ zone_name = ""
 
 [env.staging.routes]
 pattern = "staging-javascript-design-patterns.workers.dev/*"
-zone_name = ""
-
-# Headers
-[[headers]]
-for = "/*"
-values = { X-Frame-Options = "DENY", X-Content-Type-Options = "nosniff", Referrer-Policy = "strict-origin-when-cross-origin" }
-
-[[headers]]
-for = "/_next/static/*"
-values = { Cache-Control = "public, max-age=31536000, immutable" }
-
-[[headers]]
-for = "/favicon.ico"
-values = { Cache-Control = "public, max-age=86400" } 
+zone_name = "" 
