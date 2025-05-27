@@ -1,14 +1,13 @@
 name = "javascript-design-patterns"
-main = ".worker-next/index.js"
 compatibility_date = "2024-05-27"
+pages_build_output_dir = ".vercel/output/static"
 
-# Worker configuration
-[site]
-bucket = ".worker-next/assets"
-
-# Build configuration
+# Build configuration for Pages
 [build]
-command = "npm run build:worker"
+command = "npx @cloudflare/next-on-pages@1"
+
+[build.upload]
+format = "service-worker"
 
 # Environment variables
 [vars]
