@@ -8,10 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build:worker": "node build-worker.js",
-    "dev:worker": "wrangler dev --local",
-    "deploy:worker": "wrangler deploy",
-    "deploy": "npm run build:worker && npm run deploy:worker",
+    "deploy": "npm run pages:build && npm run pages:deploy",
     "pages:build": "npx @cloudflare/next-on-pages@1",
     "pages:deploy": "wrangler pages deploy .vercel/output/static --project-name=javascript-design-patterns",
     "pages:dev": "wrangler pages dev .vercel/output/static --compatibility-date=2024-05-27 --compatibility-flag=nodejs_compat"
