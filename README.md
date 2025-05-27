@@ -49,8 +49,8 @@ This project serves as an educational resource for developers looking to underst
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/javascript-design-patterns.git
-cd javascript-design-patterns
+git clone https://github.com/rulecms/learn_javascript-design-patterns.git
+cd learn_javascript-design-patterns
 ```
 
 2. Install dependencies:
