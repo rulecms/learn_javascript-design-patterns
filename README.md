@@ -8,7 +8,7 @@ A comprehensive, interactive tutorial for learning essential JavaScript design p
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3-teal)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-## 🎯 Overview
+## 🎯 Project Overview
 
 This project serves as an educational resource for developers looking to understand and implement design patterns in JavaScript. It covers 12 essential patterns across three categories:
 
