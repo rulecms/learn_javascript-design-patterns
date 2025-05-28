@@ -8,14 +8,14 @@
 }
 
 body {
-  @apply bg-gray-900 text-gray-100;
+  @apply bg-gray-900 text-gray-100 antialiased;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 /* Custom scrollbar for dark theme */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -23,21 +23,43 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-700 rounded;
+  @apply bg-gray-700 rounded-md;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-gray-600;
 }
 
-/* Code block styles */
+/* Enhanced code block styles */
 pre {
-  @apply bg-gray-900 rounded-lg p-4 overflow-x-auto;
+  @apply text-sm leading-relaxed;
+  tab-size: 2;
 }
 
 code {
-  @apply text-sm font-mono;
+  @apply font-mono;
 }
+
+/* Inline code styles */
+p code, 
+li code,
+td code {
+  @apply bg-gray-800 text-cyan-400 px-1.5 py-0.5 rounded text-sm;
+}
+
+/* Code block container shadow */
+.code-block-wrapper {
+  @apply shadow-2xl shadow-black/50;
+}
+
+/* Syntax highlighting for inline code */
+.hljs-keyword { @apply text-purple-400; }
+.hljs-string { @apply text-green-400; }
+.hljs-number { @apply text-orange-400; }
+.hljs-comment { @apply text-gray-500 italic; }
+.hljs-function { @apply text-yellow-400; }
+.hljs-class { @apply text-blue-400; }
+.hljs-type { @apply text-cyan-400; }
 
 /* Link styles */
 a {
@@ -47,4 +69,15 @@ a {
 /* Card hover effects */
 .card-hover {
   @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+}
+
+/* Selection styles */
+::selection {
+  @apply bg-blue-600/30 text-white;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+a:focus-visible {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2 ring-offset-gray-900;
 }

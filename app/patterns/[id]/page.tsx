@@ -102,8 +102,10 @@ export default async function PatternPage({
 
           {/* Code Example */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-4">Code Example</h2>
-            <CodeBlock code={pattern.codeExample} />
+            <h2 className="text-2xl font-bold text-white mb-6">Code Example</h2>
+            <div className="code-block-wrapper">
+              <CodeBlock code={pattern.codeExample} language="typescript" />
+            </div>
           </section>
         </div>
 
