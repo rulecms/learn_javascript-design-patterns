@@ -18,7 +18,21 @@ export const metadata: Metadata = {
   title: "JavaScript Design Patterns - Learn Essential Patterns",
   description: "Master JavaScript design patterns with interactive examples and clear explanations. Learn Singleton, Factory, Observer, and more essential patterns.",
   keywords: "JavaScript, design patterns, programming, software development, tutorial",
-  authors: [{ name: "RuleCMS Team" }],
+  authors: [{ name: "RuleCMS Team", url: "https://rulecms.com" }],
+  creator: "RuleCMS Team",
+  publisher: "RuleCMS",
+  openGraph: {
+    title: "JavaScript Design Patterns Tutorial",
+    description: "Master essential JavaScript design patterns with interactive examples",
+    url: "https://learn-js-design-patterns.org",
+    siteName: "JavaScript Design Patterns",
+    locale: "en_US",
+    type: "website",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
