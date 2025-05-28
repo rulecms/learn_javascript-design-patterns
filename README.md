@@ -2,6 +2,8 @@
 
 A comprehensive, interactive tutorial for learning essential JavaScript design patterns. Built with Next.js, TypeScript, and Tailwind CSS.
 
+🌐 **Live Site**: [https://learn-js-design-patterns.org](https://learn-js-design-patterns.org)
+
 ![JavaScript Design Patterns](https://img.shields.io/badge/JavaScript-Design%20Patterns-yellow)
 ![Next.js](https://img.shields.io/badge/Next.js-14-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
