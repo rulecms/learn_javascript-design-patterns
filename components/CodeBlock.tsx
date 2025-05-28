@@ -20,62 +20,88 @@ export default function CodeBlock({ code, language = 'typescript' }: CodeBlockPr
     }
   };
 
+  // Escape HTML entities
+  const escapeHtml = (text: string) => {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  };
+
   // Simple syntax highlighting for TypeScript/JavaScript
   const highlightCode = (code: string) => {
-    // Keywords
-    code = code.replace(
-      /\b(class|constructor|extends|implements|interface|function|const|let|var|if|else|return|new|this|super|import|export|from|async|await|try|catch|throw|public|private|protected|static|readonly|type|namespace|enum|abstract|as|break|case|continue|debugger|default|delete|do|finally|for|in|instanceof|switch|typeof|void|while|with|yield)\b/g,
-      '<span class="text-purple-400">$1</span>'
-    );
+    // First, escape HTML to prevent XSS and parsing issues
+    let highlighted = escapeHtml(code);
     
-    // Types and built-in objects
-    code = code.replace(
-      /\b(string|number|boolean|any|void|never|unknown|object|symbol|null|undefined|true|false|Array|Object|Promise|Map|Set|Date|RegExp|Error|JSON|Math|console)\b/g,
-      '<span class="text-cyan-400">$1</span>'
-    );
+    // Apply syntax highlighting with non-overlapping patterns
+    // Order matters: strings and comments first to prevent highlighting inside them
     
-    // Function names and method calls
-    code = code.replace(
-      /([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\(/g,
-      '<span class="text-yellow-400">$1</span>('
-    );
-    
-    // Strings
-    code = code.replace(
-      /(["'`])(?:(?=(\\?))\2.)*?\1/g,
-      '<span class="text-green-400">$&</span>'
-    );
-    
-    // Comments
-    code = code.replace(
+    // Comments (single line)
+    highlighted = highlighted.replace(
       /(\/\/.*$)/gm,
       '<span class="text-gray-500 italic">$1</span>'
     );
     
-    code = code.replace(
+    // Comments (multi-line)
+    highlighted = highlighted.replace(
       /(\/\*[\s\S]*?\*\/)/g,
       '<span class="text-gray-500 italic">$1</span>'
     );
     
+    // Strings (double quotes, single quotes, and template literals)
+    highlighted = highlighted.replace(
+      /(&quot;[^&]*&quot;|&#x27;[^&]*&#x27;|`[^`]*`)/g,
+      '<span class="text-green-400">$1</span>'
+    );
+    
+    // Keywords (using word boundaries to prevent partial matches)
+    const keywords = [
+      'class', 'constructor', 'extends', 'implements', 'interface', 'function',
+      'const', 'let', 'var', 'if', 'else', 'return', 'new', 'this', 'super',
+      'import', 'export', 'from', 'async', 'await', 'try', 'catch', 'throw',
+      'public', 'private', 'protected', 'static', 'readonly', 'type', 'namespace',
+      'enum', 'abstract', 'as', 'break', 'case', 'continue', 'debugger', 'default',
+      'delete', 'do', 'finally', 'for', 'in', 'instanceof', 'switch', 'typeof',
+      'void', 'while', 'with', 'yield'
+    ];
+    
+    const keywordRegex = new RegExp(`\\b(${keywords.join('|')})\\b(?![^<]*>)`, 'g');
+    highlighted = highlighted.replace(keywordRegex, '<span class="text-purple-400">$1</span>');
+    
+    // Types and built-in objects
+    const types = [
+      'string', 'number', 'boolean', 'any', 'void', 'never', 'unknown', 'object',
+      'symbol', 'null', 'undefined', 'true', 'false', 'Array', 'Object', 'Promise',
+      'Map', 'Set', 'Date', 'RegExp', 'Error', 'JSON', 'Math', 'console'
+    ];
+    
+    const typeRegex = new RegExp(`\\b(${types.join('|')})\\b(?![^<]*>)`, 'g');
+    highlighted = highlighted.replace(typeRegex, '<span class="text-cyan-400">$1</span>');
+    
     // Numbers
-    code = code.replace(
-      /\b(\d+)\b/g,
+    highlighted = highlighted.replace(
+      /\b(\d+)\b(?![^<]*>)/g,
       '<span class="text-orange-400">$1</span>'
     );
     
-    // Decorators
-    code = code.replace(
-      /(@[a-zA-Z_$][a-zA-Z0-9_$]*)/g,
-      '<span class="text-pink-400">$1</span>'
+    // Function names (followed by parenthesis)
+    highlighted = highlighted.replace(
+      /\b([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\((?![^<]*>)/g,
+      '<span class="text-yellow-400">$1</span>('
     );
     
     // Class names, interfaces, types (PascalCase)
-    code = code.replace(
-      /\b([A-Z][a-zA-Z0-9_$]*)\b/g,
+    highlighted = highlighted.replace(
+      /\b([A-Z][a-zA-Z0-9_$]*)\b(?![^<]*>)/g,
       '<span class="text-blue-400">$1</span>'
     );
     
-    return code;
+    // Decorators
+    highlighted = highlighted.replace(
+      /(@[a-zA-Z_$][a-zA-Z0-9_$]*)(?![^<]*>)/g,
+      '<span class="text-pink-400">$1</span>'
+    );
+    
+    return highlighted;
   };
 
   const highlightedCode = highlightCode(code);
