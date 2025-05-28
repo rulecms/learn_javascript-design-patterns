@@ -168,7 +168,7 @@ Contributions are welcome! If you'd like to add more patterns, improve explanati
 
 ## 🙏 Credits
 
-Created with ❤️ by the [RuleCMS Team](https://rulecms.com)
+Built with ❤️ by the [RuleCMS Team](https://rulecms.com)
 
 ## 📄 License
 
@@ -196,4 +196,4 @@ SOFTWARE.
 
 ---
 
-Built with Next.js and deployed with ❤️
+Built with ❤️ by the [RuleCMS Team](https://rulecms.com) • Powered by Next.js • Deployed on Cloudflare
