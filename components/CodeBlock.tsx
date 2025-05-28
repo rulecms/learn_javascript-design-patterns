@@ -20,11 +20,18 @@ export default function CodeBlock({ code, language = 'typescript' }: CodeBlockPr
     }
   };
 
-  // Escape HTML entities
+  // Escape HTML entities (server-safe version)
   const escapeHtml = (text: string) => {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+    const htmlEntities: { [key: string]: string } = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#x27;',
+      '/': '&#x2F;',
+    };
+    
+    return text.replace(/[&<>"'/]/g, (match) => htmlEntities[match]);
   };
 
   // Simple syntax highlighting for TypeScript/JavaScript
